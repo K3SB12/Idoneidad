@@ -1,0 +1,940 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Idoneidad MEP Lab - Simulador Visual para Asesores Nacionales</title>
+    <style>
+        :root {
+            --azul: #2C3E50;
+            --verde: #27AE60;
+            --gris: #7F8C8D;
+            --rojo: #E74C3C;
+            --blanco: #ECF0F1;
+            --turquesa: #1ABC9C;
+            --fondo: #F5F7FA;
+            --texto: #2C3E50;
+            --sombra: 0 4px 12px rgba(0, 0, 0, 0.08);
+            --transicion: 0.3s ease;
+        }
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: 'Segoe UI', system-ui, sans-serif;
+            background: var(--fondo);
+            color: var(--texto);
+            line-height: 1.6;
+        }
+        .nav-principal {
+            background: white;
+            box-shadow: var(--sombra);
+            padding: 0.8rem 2rem;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+        }
+        .nav-principal a {
+            color: var(--texto);
+            text-decoration: none;
+            font-weight: 600;
+            transition: var(--transicion);
+            cursor: pointer;
+        }
+        .nav-principal a:hover {
+            color: var(--turquesa);
+        }
+        .nav-links {
+            display: flex;
+            gap: 1.5rem;
+        }
+        .logo {
+            font-size: 1.2rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        .hero {
+            text-align: center;
+            padding: 3rem 1rem 2rem;
+            background: linear-gradient(135deg, #2C3E50, #1ABC9C);
+            color: white;
+        }
+        .hero h1 {
+            font-size: 2.5rem;
+            margin-bottom: 0.5rem;
+        }
+        .hero p {
+            font-size: 1.1rem;
+            opacity: 0.9;
+        }
+        .estadisticas-rapidas {
+            display: flex;
+            justify-content: center;
+            gap: 2.5rem;
+            margin-top: 1.5rem;
+        }
+        .stat {
+            text-align: center;
+        }
+        .stat-num {
+            font-size: 2rem;
+            font-weight: bold;
+            display: block;
+        }
+        .stat-label {
+            font-size: 0.85rem;
+            opacity: 0.9;
+        }
+        .rutas-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+            padding: 2rem;
+            max-width: 1200px;
+            margin: auto;
+        }
+        .ruta-card {
+            background: white;
+            border-radius: 16px;
+            padding: 1.5rem;
+            text-align: center;
+            box-shadow: var(--sombra);
+            cursor: pointer;
+            transition: transform var(--transicion), box-shadow var(--transicion);
+            color: var(--texto);
+        }
+        .ruta-card:hover {
+            transform: translateY(-6px);
+            box-shadow: 0 12px 24px rgba(0, 0, 0, 0.12);
+        }
+        .ruta-icono {
+            font-size: 2.5rem;
+            width: 70px;
+            height: 70px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            margin: 0 auto 0.8rem;
+        }
+        .icon-estudiar {
+            background: var(--azul);
+        }
+        .icon-casos {
+            background: var(--verde);
+        }
+        .icon-palacio {
+            background: var(--turquesa);
+        }
+        .icon-examen {
+            background: var(--rojo);
+        }
+        .ruta-progreso {
+            margin-top: 0.8rem;
+        }
+        .mapa-maestro {
+            max-width: 1200px;
+            margin: 2rem auto;
+            padding: 0 2rem;
+        }
+        .mapa-maestro h2 {
+            text-align: center;
+            margin-bottom: 1rem;
+        }
+        .leyes-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 1rem;
+        }
+        .ley-card {
+            background: white;
+            padding: 1.2rem;
+            border-radius: 12px;
+            box-shadow: var(--sombra);
+            cursor: pointer;
+            transition: var(--transicion);
+            border-left: 6px solid;
+        }
+        .ley-card:hover {
+            transform: translateY(-4px);
+        }
+        .ley-card h3 {
+            margin-bottom: 0.3rem;
+            font-size: 1rem;
+        }
+        .ley-card p {
+            font-size: 0.85rem;
+            color: #555;
+        }
+        .badge {
+            background: #eee;
+            padding: 0.2rem 0.6rem;
+            border-radius: 12px;
+            font-size: 0.7rem;
+            margin-top: 0.5rem;
+            display: inline-block;
+        }
+        .capitulo-header {
+            padding: 2rem;
+            color: white;
+            border-radius: 0 0 24px 24px;
+            margin-bottom: 2rem;
+        }
+        .capitulo-header h1 {
+            font-size: 1.8rem;
+        }
+        .contenido-capitulo {
+            max-width: 900px;
+            margin: auto;
+            padding: 0 2rem 2rem;
+        }
+        .contenido-capitulo h2 {
+            margin: 1.5rem 0 0.8rem;
+            color: var(--texto);
+        }
+        .contenido-capitulo h3 {
+            margin: 1.2rem 0 0.5rem;
+        }
+        .contenido-capitulo p {
+            margin-bottom: 1rem;
+        }
+        .arbol-container {
+            margin: 1.5rem 0;
+        }
+        .arbol-paso {
+            background: #f0f0f0;
+            padding: 0.8rem 1rem;
+            margin: 0.4rem 0;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: var(--transicion);
+            border-left: 4px solid transparent;
+        }
+        .arbol-paso:hover {
+            background: #e0e0e0;
+        }
+        .arbol-paso.activo {
+            background: var(--turquesa);
+            color: white;
+            border-left-color: #16a085;
+        }
+        .arbol-paso.correcto {
+            background: var(--verde);
+            color: white;
+            border-left-color: #1e8449;
+        }
+        .caso-card {
+            background: white;
+            padding: 1.5rem;
+            margin: 1.5rem 0;
+            border-radius: 12px;
+            box-shadow: var(--sombra);
+            border-left: 5px solid var(--turquesa);
+        }
+        .caso-card h4 {
+            margin-bottom: 0.8rem;
+        }
+        .caso-paso {
+            margin: 0.5rem 0;
+            font-size: 0.95rem;
+        }
+        .caso-paso strong {
+            color: var(--azul);
+        }
+        .flashcard {
+            perspective: 1000px;
+            width: 340px;
+            height: 220px;
+            margin: 2rem auto;
+            cursor: pointer;
+        }
+        .flashcard-inner {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            transition: transform 0.6s;
+            transform-style: preserve-3d;
+        }
+        .flashcard.volteada .flashcard-inner {
+            transform: rotateY(180deg);
+        }
+        .flashcard-frente,
+        .flashcard-dorso {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            backface-visibility: hidden;
+            border-radius: 16px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 1.5rem;
+            box-shadow: var(--sombra);
+            font-size: 1.1rem;
+            text-align: center;
+        }
+        .flashcard-frente {
+            background: white;
+        }
+        .flashcard-dorso {
+            background: var(--turquesa);
+            color: white;
+            transform: rotateY(180deg);
+        }
+        .temporizador {
+            text-align: center;
+            font-size: 2rem;
+            font-weight: bold;
+            color: var(--turquesa);
+            margin: 1rem 0;
+        }
+        .pregunta-box {
+            background: white;
+            padding: 2rem;
+            margin: 1rem auto;
+            max-width: 750px;
+            border-radius: 12px;
+            box-shadow: var(--sombra);
+        }
+        .pregunta-box h3 {
+            margin-bottom: 1rem;
+        }
+        .opcion {
+            display: block;
+            width: 100%;
+            padding: 1rem;
+            margin: 0.5rem 0;
+            background: #f5f5f5;
+            border: 2px solid transparent;
+            border-radius: 8px;
+            text-align: left;
+            cursor: pointer;
+            transition: var(--transicion);
+            font-size: 1rem;
+        }
+        .opcion:hover {
+            background: #e8e8e8;
+        }
+        .opcion.seleccionada {
+            border-color: var(--turquesa);
+            background: #e0f7f4;
+        }
+        .opcion.correcta {
+            background: #d5f5e3;
+            border-color: var(--verde);
+        }
+        .opcion.incorrecta {
+            background: #fadbd8;
+            border-color: var(--rojo);
+        }
+        .resultado-box {
+            padding: 1rem;
+            margin: 1rem 0;
+            border-radius: 8px;
+            display: none;
+        }
+        .resultado-box.mostrar {
+            display: block;
+        }
+        .resultado-box.exito {
+            background: #d5f5e3;
+            border: 1px solid var(--verde);
+        }
+        .resultado-box.error {
+            background: #fadbd8;
+            border: 1px solid var(--rojo);
+        }
+        .palacio-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 1.5rem;
+            padding: 2rem;
+            max-width: 1000px;
+            margin: auto;
+        }
+        .sala {
+            background: white;
+            border-radius: 16px;
+            padding: 1.5rem;
+            text-align: center;
+            box-shadow: var(--sombra);
+            cursor: pointer;
+            transition: var(--transicion);
+            border-top: 6px solid;
+        }
+        .sala:hover {
+            transform: translateY(-6px);
+        }
+        .sala-azul {
+            border-top-color: var(--azul);
+        }
+        .sala-verde {
+            border-top-color: var(--verde);
+        }
+        .sala-gris {
+            border-top-color: var(--gris);
+        }
+        .sala-roja {
+            border-top-color: var(--rojo);
+        }
+        .sala-blanca {
+            border-top-color: #ccc;
+            background: #fafafa;
+        }
+        .sala-turquesa {
+            border-top-color: var(--turquesa);
+        }
+        .sala-icono {
+            font-size: 2.5rem;
+            margin-bottom: 0.5rem;
+        }
+        .sala h3 {
+            font-size: 1rem;
+            margin-bottom: 0.3rem;
+        }
+        .sala p {
+            font-size: 0.8rem;
+            color: #777;
+        }
+        .btn {
+            background: var(--turquesa);
+            color: white;
+            border: none;
+            padding: 0.8rem 1.5rem;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: bold;
+            transition: var(--transicion);
+            font-size: 1rem;
+        }
+        .btn:hover {
+            background: #16a085;
+        }
+        .btn-secundario {
+            background: white;
+            color: var(--turquesa);
+            border: 2px solid var(--turquesa);
+        }
+        .progreso-barra {
+            background: #ddd;
+            height: 8px;
+            border-radius: 4px;
+            margin: 0.5rem 0;
+            overflow: hidden;
+        }
+        .progreso-relleno {
+            background: var(--verde);
+            height: 100%;
+            border-radius: 4px;
+            transition: width 0.4s;
+            width: 0%;
+        }
+        .infografia {
+            margin: 2rem auto;
+            text-align: center;
+            max-width: 600px;
+        }
+        .infografia svg {
+            max-width: 100%;
+            height: auto;
+        }
+        .panel-repaso {
+            max-width: 600px;
+            margin: 2rem auto;
+            text-align: center;
+        }
+        .modo-botones {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            margin: 1.5rem 0;
+            flex-wrap: wrap;
+        }
+        footer {
+            text-align: center;
+            padding: 2rem;
+            color: #999;
+            font-size: 0.9rem;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 1rem 0;
+        }
+        table th,
+        table td {
+            padding: 0.5rem;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+            font-size: 0.9rem;
+        }
+        @media (max-width: 768px) {
+            .nav-principal {
+                flex-direction: column;
+                gap: 0.5rem;
+            }
+            .nav-links {
+                gap: 1rem;
+            }
+            .hero h1 {
+                font-size: 1.8rem;
+            }
+            .estadisticas-rapidas {
+                gap: 1.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <nav class="nav-principal">
+        <a class="logo" onclick="navegar('inicio')">⚖️ Idoneidad MEP Lab</a>
+        <div class="nav-links">
+            <a onclick="navegar('capitulos')">Capítulos</a>
+            <a onclick="navegar('simulador')">Simulador</a>
+            <a onclick="navegar('palacio')">Palacio Mental</a>
+            <a onclick="iniciarRepasoRapido()">Repaso Rápido</a>
+        </div>
+        <div class="progreso-mini">
+            <div class="progreso-barra"><div class="progreso-relleno" id="progreso-general"></div></div>
+            <span id="porcentaje-progreso">0%</span>
+        </div>
+    </nav>
+    <div id="app"></div>
+    <footer><p>Idoneidad MEP Lab · Preparación para Asesores Nacionales · Costa Rica</p></footer>
+
+    <script>
+        (function() {
+            const app = document.getElementById('app');
+            let progreso = JSON.parse(localStorage.getItem('idoneidadProgreso')) || { capsVistos: {},
+                casosResueltos: 0, simuladorCorrectas: 0, simuladorTotal: 0, racha: 0, ultimoDia: '' };
+            let preguntaActual = 0;
+            let correctasSimulador = 0;
+            let intervaloRepaso = null;
+
+            function guardarProgreso() { localStorage.setItem('idoneidadProgreso', JSON.stringify(progreso)); }
+
+            function actualizarRacha() {
+                const hoy = new Date().toDateString();
+                if (progreso.ultimoDia !== hoy) {
+                    const ayer = new Date(Date.now() - 86400000).toDateString();
+                    progreso.racha = (progreso.ultimoDia === ayer) ? progreso.racha + 1 : 1;
+                    progreso.ultimoDia = hoy;
+                    guardarProgreso();
+                }
+            }
+
+            function marcarCapituloVisto(id) {
+                if (!progreso.capsVistos[id]) { progreso.capsVistos[id] = true;
+                    guardarProgreso(); }
+                actualizarRacha();
+            }
+
+            function actualizarUIProgreso() {
+                const capsVistos = Object.keys(progreso.capsVistos).length;
+                const pct = Math.round((capsVistos / 14) * 100);
+                const barra = document.getElementById('progreso-general');
+                const pctSpan = document.getElementById('porcentaje-progreso');
+                if (barra) barra.style.width = pct + '%';
+                if (pctSpan) pctSpan.textContent = pct + '%';
+            }
+
+            window.navegar = function(vista, param) {
+                actualizarUIProgreso();
+                switch (vista) {
+                    case 'inicio':
+                        renderInicio();
+                        break;
+                    case 'capitulos':
+                        renderListaCapitulos();
+                        break;
+                    case 'capitulo':
+                        renderCapitulo(param);
+                        break;
+                    case 'simulador':
+                        renderSimulador();
+                        break;
+                    case 'palacio':
+                        renderPalacio();
+                        break;
+                    case 'repaso':
+                        renderRepaso(param);
+                        break;
+                    default:
+                        renderInicio();
+                }
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+            };
+
+            // ========= DATOS =========
+            const capitulosData = [
+                { id: 1, titulo: 'Introducción al Servicio Civil y la Función Pública', color: 'azul',
+                    sala: 'Sala Azul - Servicio Civil', contenido: '<p>Contenido del capítulo 1 (próximamente).</p>',
+                    arboles: [], casos: [], fichas: [{ frente: '¿Qué regula el Estatuto de Servicio Civil?',
+                        dorso: 'La relación entre el Estado y sus funcionarios.' }] },
+                { id: 2, titulo: 'Régimen Disciplinario del Servicio Civil', color: 'azul',
+                    sala: 'Sala Azul - Servicio Civil', contenido: '<p>Contenido del capítulo 2 (próximamente).</p>',
+                    arboles: [], casos: [], fichas: [{ frente: 'Tipos de falta',
+                        dorso: 'Leves, graves y gravísimas.' }] },
+                { id: 3, titulo: 'Derechos y Deberes de los Funcionarios', color: 'azul',
+                    sala: 'Sala Azul - Servicio Civil', contenido: '<p>Contenido del capítulo 3 (próximamente).</p>',
+                    arboles: [], casos: [], fichas: [{ frente: 'Deber del funcionario',
+                        dorso: 'Cumplir con eficiencia, honradez y apego a la ley.' }] },
+                { id: 4, titulo: 'El Rol del Asesor Nacional', color: 'azul', sala: 'Sala Azul - Rol del Asesor',
+                    contenido: `<h2>El Rol del Asesor Nacional</h2>
+<p><strong>Regla de Oro:</strong> Dirige técnicamente. No administra personal. No sanciona.</p>
+<h3>Triángulo jerárquico</h3><p>Consejo Superior → Dirección Central → Asesor / Dirección Regional → Supervisor → Director → Docentes.</p>
+<h3>Autoridad técnica</h3><p>Orienta el "cómo debe hacerse". No administra vacaciones ni permisos.</p>
+<h3>Supervisión y Fiscalización</h3><p>La lupa nunca golpea, solo observa. Verifica cumplimiento curricular y de directrices.</p>
+<h3>El Informe Técnico</h3><p>Hechos → Evidencias → Análisis → Normativa → Conclusiones → Recomendaciones.</p>
+<h3>Relación Director-Asesor</h3><p>No hay subordinación jerárquica, pero sí deber de atender directrices técnicas.</p>`,
+                    arboles: [{ pregunta: '¿Ante quién resolver?',
+                        pasos: ['¿Pedagógico? → Asesor', '¿Administrativo? → Director',
+                            '¿Disciplinario? → Régimen Disciplinario'] }],
+                    casos: [{ titulo: 'Docente usa materiales no oficiales',
+                        descripcion: 'Observas materiales que contradicen el programa oficial.',
+                        competencia: 'Supervisión técnica',
+                        respuesta: 'Analizar, elaborar criterio técnico y comunicar a autoridad administrativa.' },
+                        { titulo: 'Documentos curriculares derogados',
+                            descripcion: 'El centro usa documentos derogados.', competencia: 'Fiscalización técnica',
+                            respuesta: 'Informe técnico, recomendar normativa vigente, dar seguimiento.' },
+                        { titulo: 'Director desacata orientación',
+                            descripcion: 'Director dice no aplicar la orientación técnica.',
+                            competencia: 'Autoridad técnica',
+                            respuesta: 'Fundamentar, informar, escalar si persiste.' }
+                    ],
+                    fichas: [{ frente: 'Herramienta principal del Asesor',
+                        dorso: 'El Informe Técnico: hechos, evidencias, análisis, conclusiones.' }] },
+                { id: 5, titulo: 'Ley General de Control Interno (N.° 8292)', color: 'verde',
+                    sala: 'Sala Verde - Control Interno', contenido: `<h2>La gestión preventiva</h2>
+<p><strong>Regla de Oro:</strong> NO busca castigar. Busca PREVENIR.</p>
+<p>Ciclo: Planificar → Ejecutar → Controlar → Corregir → Mejorar.</p>
+<h3>SEVRI</h3><p>Radar que valora riesgos: probabilidad, impacto. Colores: 🟢🟡🟠🔴</p>
+<h3>Titular Subordinado</h3><p>Jerarca define. Titular ejecuta. Control Interno verifica.</p>
+<h3>Sistemas de Información</h3><p>Decisiones con datos verificables, no percepciones.</p>`,
+                    arboles: [{ pregunta: '¿Involucra un riesgo institucional?',
+                        pasos: ['Identificar objetivo', 'Valorar probabilidad/impacto', 'Diseñar controles',
+                            'Monitorear', 'Mejorar'] }],
+                    casos: [{ titulo: 'Plataforma no utilizada',
+                        descripcion: 'Se compró, capacitó y nadie la usa.',
+                        competencia: 'Seguimiento del titular subordinado',
+                        respuesta: 'El titular que debía hacer seguimiento.' },
+                        { titulo: 'Riesgo de filtración', descripcion: 'Prueba con riesgo de filtración.',
+                            competencia: 'SEVRI', respuesta: 'Diseñar controles preventivos.' }
+                    ],
+                    fichas: [{ frente: '¿Control Interno = Auditoría?', dorso: 'Falso. Es gestión preventiva.' },
+                        { frente: 'SEVRI', dorso: 'Sistema Específico de Valoración del Riesgo Institucional.' }] },
+                { id: 6, titulo: 'Ley General de la Administración Pública (LGAP)', color: 'gris',
+                    sala: 'Sala Gris - LGAP', contenido: '<p>Contenido del capítulo 6 (próximamente).</p>',
+                    arboles: [], casos: [], fichas: [{ frente: 'Acto administrativo',
+                        dorso: 'Declaración unilateral que produce efectos jurídicos.' }] },
+                { id: 7, titulo: 'Empleo Público y Gestión de Personas', color: 'gris',
+                    sala: 'Sala Gris - Empleo Público', contenido: '<p>Contenido del capítulo 7 (próximamente).</p>',
+                    arboles: [], casos: [], fichas: [{ frente: 'Empleo Público',
+                        dorso: 'Perfiles, concursos, desempeño, carrera administrativa.' }] },
+                { id: 8, titulo: 'Ley de Contratación Pública', color: 'gris',
+                    sala: 'Sala Gris - Contratación', contenido: '<p>Contenido del capítulo 8 (próximamente).</p>',
+                    arboles: [], casos: [{ titulo: 'Compra con marca específica',
+                        descripcion: 'Solicitan software de una marca.', competencia: 'Contratación',
+                        respuesta: 'Especificaciones funcionales objetivas, no marca.' }],
+                    fichas: [{ frente: '¿Marca en cartel?',
+                        dorso: 'No. Usar especificaciones funcionales abiertas.' }] },
+                { id: 9, titulo: 'Ley 9999: Protección de la Niñez', color: 'rojo', sala: 'Sala Roja - Ley 9999',
+                    contenido: '<p>Contenido del capítulo 9 (próximamente).</p>',
+                    arboles: [{ pregunta: '¿Denuncia con menor?',
+                        pasos: ['Separación inmediata', 'No conciliación', 'Medida cautelar', 'Remitir'] }],
+                    casos: [{ titulo: 'Docente denunciado por mensajes a menor',
+                        descripcion: 'Denuncia por mensajes a estudiante menor.',
+                        competencia: 'Protección integral',
+                        respuesta: 'Medida cautelar, no conciliación, remitir.' }],
+                    fichas: [{ frente: '¿Conciliación con menor?', dorso: 'Prohibida. Separación inmediata.' }] },
+                { id: 10, titulo: 'Código de la Niñez y Adolescencia', color: 'rojo', sala: 'Sala Roja - Niñez',
+                    contenido: '<p>Contenido del capítulo 10 (próximamente).</p>', arboles: [], casos: [],
+                    fichas: [{ frente: 'Interés superior', dorso: 'Priorizar bienestar y desarrollo del menor.' }] },
+                { id: 11, titulo: 'Ley 7600/8661: Inclusión, DUA y Accesibilidad', color: 'turquesa',
+                    sala: 'Sala Turquesa - Inclusión', contenido: `<h2>Igualdad de oportunidades</h2>
+<p><strong>Regla de Oro:</strong> Si existe barrera, la institución debe removerla.</p>
+<h3>Tipos de barreras</h3><p>Física, curricular, metodológica, comunicacional, actitudinal, evaluativa.</p>
+<h3>Discriminación</h3><p>Directa: excluir expresamente. Por omisión: no dar apoyos aprobados.</p>
+<h3>DUA</h3><p>Diseñar desde el inicio con múltiples formas de representación, participación y expresión.</p>`,
+                    arboles: [{ pregunta: '¿Dificultad de acceso o aprendizaje?',
+                        pasos: ['Identificar barrera', 'Verificar apoyos aprobados', 'Aplicar y dar seguimiento',
+                            'Si negativa: documentar, orientar, escalar'] }],
+                    casos: [{ titulo: 'Docente niega adecuación',
+                        descripcion: 'Docente rechaza aplicar adecuación aprobada.',
+                        competencia: 'Inclusión y no discriminación',
+                        respuesta: 'Exigir aplicación, orientar, documentar, escalar si persiste.' },
+                        { titulo: 'Actividad digital inaccesible',
+                            descripcion: 'Recurso no permite participación.',
+                            competencia: 'Accesibilidad tecnológica',
+                            respuesta: 'Rediseñar con alternativas accesibles.' }
+                    ],
+                    fichas: [{ frente: 'DUA', dorso: 'Diseño Universal para el Aprendizaje.' },
+                        { frente: 'Adecuación = ¿bajar calidad?', dorso: 'No. Ajusta el camino al aprendizaje.' }] },
+                { id: 12, titulo: 'Política Educativa y Curricular', color: 'gris',
+                    sala: 'Sala Gris - Política Educativa', contenido: '<p>Contenido del capítulo 12 (próximamente).</p>',
+                    arboles: [], casos: [{ titulo: 'Docente ignora programa oficial',
+                        descripcion: 'Alega libertad de cátedra.', competencia: 'Autoridad técnica curricular',
+                        respuesta: 'La libertad de cátedra no permite desobedecer programas oficiales.' }],
+                    fichas: [{ frente: 'Libertad de cátedra', dorso: 'No autoriza ignorar programas oficiales.' }] },
+                { id: 13, titulo: 'Reglamento de Evaluación de los Aprendizajes (REA)', color: 'blanco',
+                    sala: 'Sala Blanca - REA', contenido: `<h2>Evaluación, calificación, impugnaciones</h2>
+<h3>Tipos</h3><p>🔍Diagnóstica 🧭Formativa 📊Sumativa</p>
+<h3>Eximidos</h3><p>Promedio ≥90, sin ausencias injustificadas. Debe seguir asistiendo.</p>
+<h3>Impugnaciones</h3><p>Ruta: Docente → Director → Supervisor → Dir. Regional. Plazo: 3 días hábiles.</p>
+<h3>Rol del Asesor</h3><p>NO resuelve apelaciones de notas. Emite criterio solo si autoridad lo solicita.</p>`,
+                    arboles: [{ pregunta: '¿Inconformidad con calificación?',
+                        pasos: ['¿En plazo? (3 días)', '¿Instancia correcta?', 'Docente → Director → Supervisor',
+                            'Asesor solo con solicitud formal'] }],
+                    casos: [{ titulo: 'Apelación directa al Asesor',
+                        descripcion: 'Padre pide anular examen directamente.',
+                        competencia: 'Debido proceso evaluativo',
+                        respuesta: 'Remitir a ruta REA. No resolver directamente.' },
+                        { titulo: 'Docente niega eximición',
+                            descripcion: 'Estudiante con 96 de promedio.', competencia: 'Aplicación REA',
+                            respuesta: 'Verificar requisitos; el criterio docente no puede imponerse al REA.' }
+                    ],
+                    fichas: [{ frente: '¿Asesor anula prueba?', dorso: 'No. Solo criterio técnico si es solicitado.' },
+                        { frente: 'Eximido = ¿no asiste?', dorso: 'Falso. Debe continuar asistiendo.' }] },
+                { id: 14, titulo: 'Banco Maestro de Casos Integrados', color: 'gris',
+                    sala: 'Sala Gris - Banco Maestro', contenido: `<h2>Método de resolución</h2>
+<ol><li>¿Qué ocurrió?</li><li>¿Qué competencia?</li><li>¿Norma dominante?</li><li>¿Normas complementarias?</li><li>¿Principio?</li><li>¿Actuación correcta?</li><li>¿Qué NO hacer?</li></ol>
+<p><strong>Regla final:</strong> Primero la competencia, luego la norma.</p>`,
+                    arboles: [], casos: [
+                        { titulo: 'Denuncia con menor', competencia: 'Protección integral',
+                            respuesta: 'Medida cautelar, no conciliación, remitir.' },
+                        { titulo: 'Apelación de prueba', competencia: 'REA',
+                            respuesta: 'Remitir a ruta jerárquica.' },
+                        { titulo: 'Negativa de adecuación', competencia: 'Inclusión',
+                            respuesta: 'Exigir apoyos, documentar, escalar.' },
+                        { titulo: 'Compra con marca', competencia: 'Contratación',
+                            respuesta: 'Especificaciones funcionales.' },
+                        { titulo: 'Docente ignora programa', competencia: 'Currículo',
+                            respuesta: 'Orientar, documentar, escalar.' }
+                    ],
+                    fichas: [{ frente: '¿Qué identificar primero?',
+                        dorso: 'La competencia evaluada, luego la norma dominante.' }] }
+            ];
+
+            const preguntasData = [
+                { competencia: 'Control Interno', norma: 'Ley 8292',
+                    enunciado: 'Usted detecta que un programa nacional no se ejecuta en 7 Direcciones Regionales. ¿Qué actuación corresponde?',
+                    opciones: ['Esperar auditoría', 'Documentar y activar seguimiento', 'Informar al Ministro',
+                        'Solicitar sanción inmediata'
+                    ], correcta: 1 },
+                { competencia: 'Protección integral', norma: 'Ley 9999',
+                    enunciado: 'Docente denunciado por mensajes a estudiante menor. ¿Qué hacer?',
+                    opciones: ['Reunir al docente con la estudiante', 'Esperar pruebas definitivas',
+                        'Medida cautelar inmediata y remitir', 'Sugerir conciliación'
+                    ], correcta: 2 },
+                { competencia: 'Evaluación', norma: 'REA',
+                    enunciado: 'Padre pide al Asesor anular un examen por estar "muy difícil". ¿Qué corresponde?',
+                    opciones: ['Anular la prueba', 'Responder que queda anulada',
+                        'Remitir a ruta jerárquica del REA', 'Llamar al docente para modificar nota'
+                    ], correcta: 2 },
+                { competencia: 'Inclusión', norma: 'Ley 7600',
+                    enunciado: 'Docente niega adecuación aprobada diciendo que el estudiante "no da la talla".',
+                    opciones: ['Aceptar criterio docente', 'Exigir aplicación de apoyos y orientar',
+                        'Sugerir cambio de especialidad', 'Dejar decisión al director'
+                    ], correcta: 1 },
+                { competencia: 'Rol del Asesor', norma: 'Servicio Civil',
+                    enunciado: 'Observa que un docente usa materiales contrarios al programa oficial.',
+                    opciones: ['Ordenar suspensión', 'Ignorar', 'Elaborar criterio técnico y comunicar',
+                        'Modificar materiales personalmente'
+                    ], correcta: 2 },
+                { competencia: 'Contratación', norma: 'Ley Contratación',
+                    enunciado: 'Solicitan comprar software mencionando una marca.',
+                    opciones: ['Aprobar la marca', 'Especificaciones funcionales objetivas',
+                        'Tres cotizaciones de la misma marca', 'Rechazar cualquier compra'
+                    ], correcta: 1 },
+                { competencia: 'Régimen disciplinario', norma: 'Servicio Civil',
+                    enunciado: 'Director pide despedir docente solo con el informe del Asesor.',
+                    opciones: ['Apoyar despido', 'Aclarar que el informe no sustituye el procedimiento', 'Ignorar',
+                        'Solicitar despido sin trámite'
+                    ], correcta: 1 },
+                { competencia: 'Evaluación inclusiva', norma: 'REA y Ley 7600',
+                    enunciado: 'Prueba en formato escrito extenso ignorando apoyos aprobados.',
+                    opciones: ['Aplicar igual para todos', 'Verificar apoyos y ajustar instrumento',
+                        'Eximir al estudiante', 'Bajar dificultad para todos'
+                    ], correcta: 1 }
+            ];
+
+            // ========= RENDERIZADORES =========
+            function renderInicio() {
+                app.innerHTML = `
+            <header class="hero"><h1>Idoneidad MEP Lab</h1><p>Simulador Visual para Asesores Nacionales del MEP</p>
+            <div class="estadisticas-rapidas"><div class="stat"><span class="stat-num">${Object.keys(progreso.capsVistos).length}</span><span class="stat-label">Capítulos vistos</span></div><div class="stat"><span class="stat-num">${progreso.casosResueltos||0}</span><span class="stat-label">Casos resueltos</span></div><div class="stat"><span class="stat-num">${progreso.racha||0}</span><span class="stat-label">Días de racha</span></div></div></header>
+            <section class="rutas-container">
+            <div class="ruta-card" onclick="navegar('capitulos')"><div class="ruta-icono icon-estudiar">📚</div><h2>1. Estudiar capítulos</h2><p>14 capítulos con teoría, árboles y casos.</p></div>
+            <div class="ruta-card" onclick="navegar('simulador')"><div class="ruta-icono icon-casos">⚖️</div><h2>2. Resolver casos</h2><p>Simulador con preguntas tipo examen.</p></div>
+            <div class="ruta-card" onclick="navegar('palacio')"><div class="ruta-icono icon-palacio">🏰</div><h2>3. Palacio Mental</h2><p>Salas de memoria por cada ley.</p></div>
+            <div class="ruta-card" onclick="navegar('repaso',30)"><div class="ruta-icono icon-examen">📝</div><h2>4. Repaso Rápido</h2><p>Flashcards con temporizador.</p></div></section>
+            <section class="mapa-maestro"><h2>🗺️ Mapa Maestro</h2><div class="leyes-grid">${capitulosData.map(c=>`<div class="ley-card" style="border-left-color:var(--${c.color})" onclick="navegar('capitulo',${c.id})"><h3>${c.titulo}</h3><p>${c.sala}</p><span class="badge">Cap. ${c.id}</span></div>`).join('')}</div></section>`;
+                actualizarUIProgreso();
+            }
+
+            function renderListaCapitulos() {
+                app.innerHTML = `<div class="contenido-capitulo"><h2>📚 Lista de Capítulos</h2>${capitulosData.map(c=>`<div class="caso-card" onclick="navegar('capitulo',${c.id})"><h4>Capítulo ${c.id}: ${c.titulo}</h4><p>${c.sala}</p></div>`).join('')}</div>`;
+                actualizarUIProgreso();
+            }
+
+            function renderCapitulo(id) {
+                const cap = capitulosData.find(c => c.id === id);
+                if (!cap) return renderInicio();
+                marcarCapituloVisto(id);
+                const colorFondo = { azul: 'var(--azul)', verde: 'var(--verde)', gris: 'var(--gris)',
+                    rojo: 'var(--rojo)', turquesa: 'var(--turquesa)', blanco: '#ccc' } [cap.color] || 'var(--
+                    gris) ';
+                let html = `<div class="capitulo-header" style="background-color:${colorFondo};${cap.color==='blanco'?'color:#333;':''}"><h1>Capítulo ${cap.id}: ${cap.titulo}</h1></div>
+            <div class="contenido-capitulo">${cap.contenido}</div>`;
+                if (cap.arboles.length) {
+                    html +=
+                        `<div class="contenido-capitulo"><h3>🌳 Árboles de decisión</h3>${cap.arboles.map(a=>`<div class="arbol-container"><h4>${a.pregunta}</h4>${a.pasos.map(p=>`<div class="arbol-paso" onclick="this.classList.toggle('activo')">${p}</div>`).join('')}</div>`).join('')}</div>`;
+                }
+                if (cap.casos.length) {
+                    html +=
+                        `<div class="contenido-capitulo"><h3>📋 Casos</h3>${cap.casos.map(c=>`<div class="caso-card"><h4>${c.titulo}</h4><p class="caso-paso"><strong>Hecho:</strong> ${c.descripcion}</p><p class="caso-paso"><strong>Competencia:</strong> ${c.competencia||'General'}</p><p class="caso-paso"><strong>Respuesta:</strong> ${c.respuesta}</p></div>`).join('')}</div>`;
+                }
+                html += `<div class="contenido-capitulo"><button class="btn" onclick="navegar('capitulos')">← Volver a capítulos</button></div>`;
+                app.innerHTML = html;
+                actualizarUIProgreso();
+            }
+
+            function renderSimulador() {
+                preguntaActual = 0;
+                correctasSimulador = 0;
+                mostrarPreguntaSimulador();
+            }
+
+            function mostrarPreguntaSimulador() {
+                if (preguntaActual >= preguntasData.length) {
+                    app.innerHTML = `<div class="contenido-capitulo" style="text-align:center"><h3>🏆 Resultado: ${correctasSimulador} de ${preguntasData.length}</h3><button class="btn" onclick="navegar('simulador')">Reintentar</button><button class="btn btn-secundario" onclick="navegar('inicio')">Inicio</button></div>`;
+                    progreso.simuladorCorrectas += correctasSimulador;
+                    progreso.simuladorTotal += preguntasData.length;
+                    progreso.casosResueltos = (progreso.casosResueltos || 0) + preguntasData.length;
+                    guardarProgreso();
+                    actualizarUIProgreso();
+                    return;
+                }
+                const p = preguntasData[preguntaActual];
+                let html =
+                    `<div class="pregunta-box"><h3>Pregunta ${preguntaActual+1} de ${preguntasData.length}</h3><p><strong>Competencia:</strong> ${p.competencia} | <strong>Norma:</strong> ${p.norma}</p><p>${p.enunciado}</p>`;
+                p.opciones.forEach((op, i) => { html +=
+                        `<button class="opcion" data-idx="${i}">${op}</button>`; });
+                html +=
+                    `<div class="resultado-box" id="resultado-sim"></div><button class="btn" id="btn-siguiente-sim" style="display:none;">Siguiente</button></div>`;
+                app.innerHTML = html;
+                const ops = document.querySelectorAll('.opcion');
+                const res = document.getElementById('resultado-sim');
+                const btnSig = document.getElementById('btn-siguiente-sim');
+                ops.forEach(op => op.addEventListener('click', function() {
+                    ops.forEach(o => o.classList.remove('seleccionada'));
+                    this.classList.add('seleccionada');
+                    const idx = parseInt(this.getAttribute('data-idx'));
+                    if (idx === p.correcta) {
+                        this.classList.add('correcta');
+                        res.className = 'resultado-box mostrar exito';
+                        res.textContent = '✅ Correcto';
+                        correctasSimulador++;
+                    } else {
+                        this.classList.add('incorrecta');
+                        res.className = 'resultado-box mostrar error';
+                        res.textContent = '❌ Incorrecto';
+                        ops[p.correcta].classList.add('correcta');
+                    }
+                    ops.forEach(o => o.disabled = true);
+                    btnSig.style.display = 'inline-block';
+                }));
+                btnSig.addEventListener('click', () => { preguntaActual++;
+                    mostrarPreguntaSimulador(); });
+            }
+
+            function renderPalacio() {
+                const colores = { 1: 'azul', 2: 'azul', 3: 'azul', 4: 'azul', 5: 'verde', 6: 'gris', 7: 'gris',
+                    8: 'gris', 9: 'rojo', 10: 'rojo', 11: 'turquesa', 12: 'gris', 13: 'blanca', 14: 'gris' };
+                const iconos = { 1: '📘', 2: '📘', 3: '📘', 4: '📘', 5: '📗', 6: '📙', 7: '👥', 8: '💼', 9: '🔴',
+                    10: '🧒', 11: '♿', 12: '🎯', 13: '📝', 14: '🏛️' };
+                app.innerHTML = `<header class="hero"><h1>🏰 Palacio Mental</h1><p>Salas de memoria por ley</p></header>
+            <div class="palacio-grid">${capitulosData.map(c=>`<div class="sala sala-${colores[c.id]}" onclick="navegar('capitulo',${c.id})"><div class="sala-icono">${iconos[c.id]}</div><h3>${c.titulo.split(':')[0]}</h3><p>${c.sala}</p><span class="badge">Cap. ${c.id}</span></div>`).join('')}</div>
+            <div style="text-align:center;margin:2rem;"><button class="btn" onclick="navegar('inicio')">← Inicio</button></div>`;
+            }
+
+            function renderRepaso(tiempo) {
+                let fichas = [];
+                capitulosData.forEach(c => { if (c.fichas) c.fichas.forEach(f => fichas.push(f)); });
+                if (!fichas.length) { app.innerHTML =
+                        '<div class="contenido-capitulo"><p>No hay fichas disponibles.</p></div>'; return; }
+                let idx = 0;
+                let tiempoRestante = tiempo;
+
+                function formatearTiempo(s) { const m = Math.floor(s / 60); const sec = s % 60; return `${m}:${sec.toString().padStart(2,'0')}`; }
+
+                function mostrarFicha() {
+                    if (idx >= fichas.length) {
+                        app.innerHTML =
+                            '<div class="panel-repaso"><h3>✅ Repaso completado</h3><button class="btn" onclick="navegar(\'inicio\')">Salir</button></div>';
+                        if (intervaloRepaso) clearInterval(intervaloRepaso);
+                        return;
+                    }
+                    const f = fichas[idx];
+                    app.innerHTML = `<div class="panel-repaso">
+                <div class="temporizador" id="temp-repaso">${formatearTiempo(tiempoRestante)}</div>
+                <div class="flashcard" id="flashcard-repaso"><div class="flashcard-inner"><div class="flashcard-frente">${f.frente}</div><div class="flashcard-dorso">${f.dorso}</div></div></div>
+                <p>Tarjeta ${idx+1} de ${fichas.length}</p>
+                <div class="modo-botones"><button class="btn" id="btn-voltear">Voltear</button><button class="btn btn-secundario" id="btn-siguiente-rep" style="display:none;">Siguiente</button></div>
+                <button class="btn btn-secundario" onclick="if(intervaloRepaso)clearInterval(intervaloRepaso);navegar('inicio')">Salir</button></div>`;
+                    const flashcard = document.getElementById('flashcard-repaso');
+                    const btnVoltear = document.getElementById('btn-voltear');
+                    const btnSiguiente = document.getElementById('btn-siguiente-rep');
+                    const tempEl = document.getElementById('temp-repaso');
+                    btnVoltear.addEventListener('click', () => { flashcard.classList.toggle('volteada');
+                        btnVoltear.style.display = 'none';
+                        btnSiguiente.style.display = 'inline-block'; });
+                    btnSiguiente.addEventListener('click', () => { idx++;
+                        tiempoRestante = tiempo; if (intervaloRepaso) clearInterval(intervaloRepaso);
+                        mostrarFicha(); });
+                    if (intervaloRepaso) clearInterval(intervaloRepaso);
+                    intervaloRepaso = setInterval(() => { tiempoRestante--;
+                        tempEl.textContent = formatearTiempo(tiempoRestante); if (tiempoRestante <= 0) {
+                            clearInterval(intervaloRepaso);
+                            flashcard.classList.add('volteada');
+                            btnVoltear.style.display = 'none';
+                            btnSiguiente.style.display = 'inline-block'; } }, 1000);
+                }
+                mostrarFicha();
+            }
+
+            window.iniciarRepasoRapido = function() {
+                const segundos = prompt('Duración: 30s, 120s o 300s', '30');
+                const s = parseInt(segundos);
+                if ([30, 120, 300].includes(s)) { navegar('repaso', s); } else { alert('Usa 30, 120 o 300.'); }
+            };
+
+            // Iniciar con hash o inicio
+            const hash = window.location.hash.replace('#', '');
+            if (hash.startsWith('capitulo-')) {
+                const id = parseInt(hash.split('-')[1]);
+                if (id >= 1 && id <= 14) navegar('capitulo', id);
+                else navegar('inicio');
+            } else if (hash === 'simulador') { navegar('simulador'); } else if (hash === 'palacio') { navegar(
+                'palacio'); } else if (hash === 'repaso') { navegar('repaso', 30); } else { navegar('inicio'); }
+
+            window.addEventListener('hashchange', () => {
+                const h = window.location.hash.replace('#', '');
+                if (h.startsWith('capitulo-')) { const id = parseInt(h.split('-')[1]); if (id) navegar(
+                    'capitulo', id); } else if (h === 'simulador') { navegar('simulador'); } else if (h ===
+                    'palacio') { navegar('palacio'); } else if (h === 'repaso') { navegar('repaso', 30); } else {
+                    navegar('inicio'); }
+            });
+        })();
+    </script>
+</body>
+</html>
