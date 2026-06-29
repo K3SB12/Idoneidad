@@ -297,6 +297,40 @@
             .hero h1 { font-size: 1.8rem; }
             .estadisticas-rapidas { gap: 1.5rem; }
         }
+
+                /* Modal para infografías */
+        .modal-overlay {
+            display: none;
+            position: fixed;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background: rgba(0,0,0,0.85);
+            z-index: 1000;
+            justify-content: center;
+            align-items: center;
+            cursor: zoom-out;
+        }
+        .modal-overlay.activo {
+            display: flex;
+        }
+        .modal-overlay img {
+            max-width: 95vw;
+            max-height: 95vh;
+            border-radius: 12px;
+            box-shadow: 0 0 40px rgba(0,0,0,0.5);
+            cursor: default;
+        }
+        .modal-cerrar {
+            position: absolute;
+            top: 20px;
+            right: 30px;
+            color: white;
+            font-size: 2.5rem;
+            cursor: pointer;
+            font-weight: bold;
+            z-index: 1001;
+            background: none;
+            border: none;
+        }
     </style>
 </head>
 <body>
@@ -318,6 +352,16 @@
     <footer><p>Idoneidad MEP Lab · Preparación para Asesores Nacionales · Costa Rica</p></footer>
 
     <script>
+
+        // Funciones del modal de infografías
+        window.abrirModal = function(url) {
+            document.getElementById('modal-img').src = url;
+            document.getElementById('modal-infografia').classList.add('activo');
+        };
+        window.cerrarModal = function() {
+            document.getElementById('modal-infografia').classList.remove('activo');
+            document.getElementById('modal-img').src = '';
+        };
         (function() {
             const app = document.getElementById('app');
             let progreso = JSON.parse(localStorage.getItem('idoneidadProgreso')) || { capsVistos: {}, casosResueltos: 0, simuladorCorrectas: 0, simuladorTotal: 0, racha: 0, ultimoDia: '' };
@@ -540,7 +584,7 @@
                 grupos.forEach(g => {
                     html += `<div style="background:white; border-radius:16px; padding:1.5rem; margin:1.5rem 0; box-shadow:0 4px 12px rgba(0,0,0,0.08);">
                         <h3 style="margin-bottom:1rem;">${g.titulo}</h3>
-                        <img src="${g.img}" alt="${g.titulo}" style="max-width:100%; height:auto; border-radius:12px; box-shadow:0 2px 8px rgba(0,0,0,0.1);">
+                       <img src="${g.img}" alt="${g.titulo}" onclick="abrirModal('${g.img}')" style="max-width:100%; height:auto; border-radius:12px; box-shadow:0 2px 8px rgba(0,0,0,0.1); cursor:zoom-in;" title="Clic para ampliar">
                     </div>`;
                 });
                 html += `<div style="text-align:center; margin:2rem 0;"><button class="btn" onclick="navegar('inicio')">← Volver al inicio</button></div></div>`;
@@ -599,5 +643,10 @@
             });
         })();
     </script>
+    <!-- Modal para imágenes ampliadas -->
+        <div id="modal-infografia" class="modal-overlay" onclick="cerrarModal()">
+            <button class="modal-cerrar" onclick="cerrarModal()">&times;</button>
+            <img id="modal-img" src="" alt="Infografía ampliada" onclick="event.stopPropagation()">
+        </div>
 </body>
 </html>
