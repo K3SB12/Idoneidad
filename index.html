@@ -361,45 +361,189 @@
                 window.scrollTo({ top: 0, behavior: 'smooth' });
             };
 
-            // DATOS
+            // ============ DATOS COMPLETOS DE LOS 14 CAPÍTULOS ============
             const capitulosData = [
-                { id:1, titulo:'Introducción al Servicio Civil', color:'azul', sala:'Sala Azul', contenido:'<p>Contenido del capítulo 1 (próximamente).</p>', arboles:[], casos:[], fichas:[{frente:'¿Qué regula el Estatuto de Servicio Civil?', dorso:'La relación entre el Estado y sus funcionarios.'}] },
-                { id:2, titulo:'Régimen Disciplinario', color:'azul', sala:'Sala Azul', contenido:'<p>Contenido del capítulo 2 (próximamente).</p>', arboles:[], casos:[], fichas:[{frente:'Tipos de falta', dorso:'Leves, graves y gravísimas.'}] },
-                { id:3, titulo:'Derechos y Deberes', color:'azul', sala:'Sala Azul', contenido:'<p>Contenido del capítulo 3 (próximamente).</p>', arboles:[], casos:[], fichas:[{frente:'Deber del funcionario', dorso:'Cumplir con eficiencia, honradez y apego a la ley.'}] },
-                { id:4, titulo:'El Rol del Asesor Nacional', color:'azul', sala:'Sala Azul - Rol del Asesor', contenido:`<h2>El Rol del Asesor Nacional</h2>
+                // CAPÍTULO 1
+                { id:1, titulo:'Introducción al Servicio Civil y la Función Pública', color:'azul', sala:'Sala Azul - Servicio Civil',
+                  contenido:`<h2>Fundamentos del Estatuto de Servicio Civil</h2>
+<p><strong>Regla de Oro:</strong> El Estatuto de Servicio Civil regula la relación entre el Estado y sus funcionarios, estableciendo derechos, deberes, prohibiciones y el régimen disciplinario.</p>
+<h3>Principios rectores</h3><p>Legalidad, eficiencia, idoneidad, estabilidad, igualdad, mérito, disciplina, probidad, lealtad, jerarquía, publicidad, transparencia, rendición de cuentas.</p>
+<h3>Ámbito de aplicación</h3><p>Cubre a los servidores del Poder Ejecutivo, sus dependencias y órganos adscritos. El MEP está plenamente dentro de este régimen.</p>
+<h3>Carrera administrativa</h3><p>Sistema de gestión del empleo público basado en el mérito y la idoneidad. Ingreso por concurso, estabilidad condicionada al buen desempeño, ascenso por capacidad.</p>
+<h3>El Asesor Nacional como funcionario</h3><p>Está sujeto a todas las obligaciones del Estatuto, pero además ejerce autoridad técnica. Su deber de probidad se extiende a sus dictámenes y orientaciones.</p>`,
+                  arboles:[{pregunta:'¿Se aplica el Estatuto de Servicio Civil?', pasos:['¿La persona labora para el Poder Ejecutivo?','¿Es un cargo de la carrera administrativa?','Sí → Aplica el Estatuto','No → Puede regirse por otro régimen']}],
+                  casos:[{titulo:'Funcionario niega acceso a expediente', descripcion:'Un docente solicita ver su expediente y el Director se niega.', competencia:'Principios de transparencia y publicidad', respuesta:'Todo funcionario tiene derecho a acceder a su expediente. La negativa injustificada vulnera el principio de transparencia.'}],
+                  fichas:[{frente:'¿Qué regula el Estatuto de Servicio Civil?', dorso:'La relación entre el Estado y sus funcionarios: derechos, deberes, prohibiciones y régimen disciplinario.'},{frente:'Principio de mérito', dorso:'El ingreso y ascenso se basan en la capacidad y los resultados, no en favoritismos.'}] },
+
+                // CAPÍTULO 2
+                { id:2, titulo:'Régimen Disciplinario del Servicio Civil', color:'azul', sala:'Sala Azul - Régimen Disciplinario',
+                  contenido:`<h2>Faltas, sanciones y procedimiento disciplinario</h2>
+<p><strong>Regla de Oro:</strong> El régimen disciplinario busca corregir conductas irregulares que afectan el servicio público, siguiendo siempre el debido proceso.</p>
+<h3>Tipos de faltas</h3><p><strong>Leves:</strong> impuntualidad ocasional, descortesía menor. Se sancionan con amonestación escrita.<br><strong>Graves:</strong> incumplimiento reiterado de deberes, negligencia, desobediencia. Sanción: suspensión sin goce de salario hasta por 30 días.<br><strong>Gravísimas:</strong> abuso de autoridad, falsificación, acoso laboral o sexual. Sanción: despido sin responsabilidad patronal.</p>
+<h3>Procedimiento</h3><p>1. Denuncia o informe. 2. Investigación preliminar. 3. Apertura de expediente disciplinario. 4. Debido proceso (audiencia, prueba, defensa). 5. Acto final (sanción o absolución). 6. Recursos (reconsideración, apelación).</p>
+<h3>Prescripción</h3><p>Faltas leves: 1 año. Faltas graves: 2 años. Faltas gravísimas: 3 años. El plazo se cuenta desde que la falta se cometió o desde que cesó la conducta continuada.</p>
+<h3>Rol del Asesor</h3><p>No investiga ni sanciona. Pero su informe técnico puede ser prueba documental en el expediente. Debe colaborar si es requerido formalmente.</p>`,
+                  arboles:[{pregunta:'¿Cómo clasificar una falta?', pasos:['¿Afecta gravemente el servicio o derechos de terceros? → Gravísima','¿Es reiterada o implica negligencia? → Grave','¿Es ocasional y de menor impacto? → Leve','Aplicar sanción proporcional']}],
+                  casos:[{titulo:'Docente llega tarde reiteradamente', descripcion:'Un docente acumula 10 llegadas tardías en un mes sin justificación.', competencia:'Régimen disciplinario', respuesta:'Constituye falta grave por incumplimiento reiterado. Corresponde iniciar procedimiento disciplinario con garantía de defensa.'},{titulo:'Director impone sanción sin procedimiento', descripcion:'Un Director suspende a un docente verbalmente sin abrir expediente.', competencia:'Debido proceso', respuesta:'La sanción es nula por violar el debido proceso. Debe reponerse el procedimiento desde el inicio.'}],
+                  fichas:[{frente:'Tipos de falta', dorso:'Leves (amonestación), Graves (suspensión hasta 30 días), Gravísimas (despido).'},{frente:'Prescripción de faltas', dorso:'Leves: 1 año. Graves: 2 años. Gravísimas: 3 años.'}] },
+
+                // CAPÍTULO 3
+                { id:3, titulo:'Derechos y Deberes de los Funcionarios', color:'azul', sala:'Sala Azul - Derechos y Deberes',
+                  contenido:`<h2>Derechos y obligaciones del servidor público</h2>
+<p><strong>Regla de Oro:</strong> Todo derecho conlleva un deber correlativo. El funcionario debe cumplir con eficiencia, honradez y apego a la ley.</p>
+<h3>Principales derechos</h3><p>Estabilidad en el cargo, salario justo, vacaciones (15 días hábiles por año), permisos con goce (matrimonio 3 días, fallecimiento 3 días, capacitación), seguridad social, no discriminación, libre sindicación.</p>
+<h3>Principales deberes</h3><p>Cumplir horario, acatar órdenes jerárquicas lícitas, guardar confidencialidad, usar bienes públicos solo para fines oficiales, denunciar irregularidades, capacitarse, tratar con respeto.</p>
+<h3>Prohibiciones</h3><p>Abandonar el cargo sin autorización, recibir dádivas, usar influencias para beneficio personal, realizar actividades político-electorales en horario laboral, discriminar.</p>
+<h3>Jornada laboral</h3><p>La jornada ordinaria es de 40 horas semanales para el personal administrativo. Para docentes, se rige por lecciones y planeamiento. Las horas extra deben ser autorizadas y compensadas según corresponda.</p>`,
+                  arboles:[{pregunta:'¿Procede un permiso con goce?', pasos:['¿Está previsto en la normativa? (matrimonio, fallecimiento, capacitación)','¿Se solicitó con antelación o se justificó oportunamente?','¿No afecta gravemente el servicio?','Sí → Autorizar']}],
+                  casos:[{titulo:'Docente usa instalaciones para negocio propio', descripcion:'Un docente vende productos dentro del centro educativo en horario laboral.', competencia:'Prohibiciones y deberes', respuesta:'Constituye falta grave. Usa bienes públicos para fines privados y afecta el servicio.'},{titulo:'Director niega permiso por fallecimiento', descripcion:'Un docente solicita 3 días por fallecimiento de un hermano y el Director lo niega.', competencia:'Derechos del funcionario', respuesta:'El permiso por fallecimiento de familiar cercano es un derecho. La negativa injustificada es ilegal.'}],
+                  fichas:[{frente:'Deber principal del funcionario', dorso:'Cumplir con eficiencia, honradez y apego a la ley.'},{frente:'Prohibición clave', dorso:'No usar bienes públicos para fines privados ni recibir dádivas.'}] },
+
+                // CAPÍTULO 4 (completo como antes)
+                { id:4, titulo:'El Rol del Asesor Nacional', color:'azul', sala:'Sala Azul - Rol del Asesor',
+                  contenido:`<h2>El Rol del Asesor Nacional</h2>
 <p><strong>Regla de Oro:</strong> Dirige técnicamente. No administra personal. No sanciona.</p>
 <h3>Triángulo jerárquico</h3><p>Consejo Superior → Dirección Central → Asesor / Dirección Regional → Supervisor → Director → Docentes.</p>
 <h3>Autoridad técnica</h3><p>Orienta el "cómo debe hacerse". No administra vacaciones ni permisos.</p>
 <h3>Supervisión y Fiscalización</h3><p>La lupa nunca golpea, solo observa. Verifica cumplimiento curricular y de directrices.</p>
 <h3>El Informe Técnico</h3><p>Hechos → Evidencias → Análisis → Normativa → Conclusiones → Recomendaciones.</p>
-<h3>Relación Director-Asesor</h3><p>No hay subordinación jerárquica, pero sí deber de atender directrices técnicas.</p>`, arboles:[{pregunta:'¿Ante quién resolver?', pasos:['¿Pedagógico? → Asesor','¿Administrativo? → Director','¿Disciplinario? → Régimen Disciplinario']}], casos:[{titulo:'Docente usa materiales no oficiales', descripcion:'Observas materiales que contradicen el programa oficial.', competencia:'Supervisión técnica', respuesta:'Analizar, elaborar criterio técnico y comunicar a autoridad administrativa.'},{titulo:'Documentos curriculares derogados', descripcion:'El centro usa documentos derogados.', competencia:'Fiscalización técnica', respuesta:'Informe técnico, recomendar normativa vigente, dar seguimiento.'},{titulo:'Director desacata orientación', descripcion:'Director dice no aplicar la orientación técnica.', competencia:'Autoridad técnica', respuesta:'Fundamentar, informar, escalar si persiste.'}], fichas:[{frente:'Herramienta principal del Asesor', dorso:'El Informe Técnico: hechos, evidencias, análisis, conclusiones.'}] },
-                { id:5, titulo:'Ley General de Control Interno (N.° 8292)', color:'verde', sala:'Sala Verde - Control Interno', contenido:`<h2>La gestión preventiva</h2>
+<h3>Relación Director-Asesor</h3><p>No hay subordinación jerárquica, pero sí deber de atender directrices técnicas.</p>`,
+                  arboles:[{pregunta:'¿Ante quién resolver?', pasos:['¿Pedagógico? → Asesor','¿Administrativo? → Director','¿Disciplinario? → Régimen Disciplinario']}],
+                  casos:[{titulo:'Docente usa materiales no oficiales', descripcion:'Observas materiales que contradicen el programa oficial.', competencia:'Supervisión técnica', respuesta:'Analizar, elaborar criterio técnico y comunicar a autoridad administrativa.'},{titulo:'Documentos curriculares derogados', descripcion:'El centro usa documentos derogados.', competencia:'Fiscalización técnica', respuesta:'Informe técnico, recomendar normativa vigente, dar seguimiento.'},{titulo:'Director desacata orientación', descripcion:'Director dice no aplicar la orientación técnica.', competencia:'Autoridad técnica', respuesta:'Fundamentar, informar, escalar si persiste.'}],
+                  fichas:[{frente:'Herramienta principal del Asesor', dorso:'El Informe Técnico: hechos, evidencias, análisis, conclusiones.'}] },
+
+                // CAPÍTULO 5 (completo como antes)
+                { id:5, titulo:'Ley General de Control Interno (N.° 8292)', color:'verde', sala:'Sala Verde - Control Interno',
+                  contenido:`<h2>La gestión preventiva</h2>
 <p><strong>Regla de Oro:</strong> NO busca castigar. Busca PREVENIR.</p>
 <p>Ciclo: Planificar → Ejecutar → Controlar → Corregir → Mejorar.</p>
 <h3>SEVRI</h3><p>Radar que valora riesgos: probabilidad, impacto. Colores: 🟢🟡🟠🔴</p>
 <h3>Titular Subordinado</h3><p>Jerarca define. Titular ejecuta. Control Interno verifica.</p>
-<h3>Sistemas de Información</h3><p>Decisiones con datos verificables, no percepciones.</p>`, arboles:[{pregunta:'¿Involucra un riesgo institucional?', pasos:['Identificar objetivo','Valorar probabilidad/impacto','Diseñar controles','Monitorear','Mejorar']}], casos:[{titulo:'Plataforma no utilizada', descripcion:'Se compró, capacitó y nadie la usa.', competencia:'Seguimiento del titular subordinado', respuesta:'El titular que debía hacer seguimiento.'},{titulo:'Riesgo de filtración', descripcion:'Prueba con riesgo de filtración.', competencia:'SEVRI', respuesta:'Diseñar controles preventivos.'}], fichas:[{frente:'¿Control Interno = Auditoría?', dorso:'Falso. Es gestión preventiva.'},{frente:'SEVRI', dorso:'Sistema Específico de Valoración del Riesgo Institucional.'}] },
-                { id:6, titulo:'Ley General de la Administración Pública (LGAP)', color:'gris', sala:'Sala Gris - LGAP', contenido:'<p>Contenido del capítulo 6 (próximamente).</p>', arboles:[], casos:[], fichas:[{frente:'Acto administrativo', dorso:'Declaración unilateral que produce efectos jurídicos.'}] },
-                { id:7, titulo:'Empleo Público y Gestión de Personas', color:'gris', sala:'Sala Gris - Empleo Público', contenido:'<p>Contenido del capítulo 7 (próximamente).</p>', arboles:[], casos:[], fichas:[{frente:'Empleo Público', dorso:'Perfiles, concursos, desempeño, carrera administrativa.'}] },
-                { id:8, titulo:'Ley de Contratación Pública', color:'gris', sala:'Sala Gris - Contratación', contenido:'<p>Contenido del capítulo 8 (próximamente).</p>', arboles:[], casos:[{titulo:'Compra con marca específica', descripcion:'Solicitan software de una marca.', competencia:'Contratación', respuesta:'Especificaciones funcionales objetivas, no marca.'}], fichas:[{frente:'¿Marca en cartel?', dorso:'No. Usar especificaciones funcionales abiertas.'}] },
-                { id:9, titulo:'Ley 9999: Protección de la Niñez', color:'rojo', sala:'Sala Roja - Ley 9999', contenido:'<p>Contenido del capítulo 9 (próximamente).</p>', arboles:[{pregunta:'¿Denuncia con menor?', pasos:['Separación inmediata','No conciliación','Medida cautelar','Remitir']}], casos:[{titulo:'Docente denunciado por mensajes a menor', descripcion:'Denuncia por mensajes a estudiante menor.', competencia:'Protección integral', respuesta:'Medida cautelar, no conciliación, remitir.'}], fichas:[{frente:'¿Conciliación con menor?', dorso:'Prohibida. Separación inmediata.'}] },
-                { id:10, titulo:'Código de la Niñez y Adolescencia', color:'rojo', sala:'Sala Roja - Niñez', contenido:'<p>Contenido del capítulo 10 (próximamente).</p>', arboles:[], casos:[], fichas:[{frente:'Interés superior', dorso:'Priorizar bienestar y desarrollo del menor.'}] },
-                { id:11, titulo:'Ley 7600/8661: Inclusión, DUA y Accesibilidad', color:'turquesa', sala:'Sala Turquesa - Inclusión', contenido:`<h2>Igualdad de oportunidades</h2>
-<p><strong>Regla de Oro:</strong> Si existe barrera, la institución debe removerla.</p>
-<h3>Tipos de barreras</h3><p>Física, curricular, metodológica, comunicacional, actitudinal, evaluativa.</p>
-<h3>Discriminación</h3><p>Directa: excluir expresamente. Por omisión: no dar apoyos aprobados.</p>
-<h3>DUA</h3><p>Diseñar desde el inicio con múltiples formas de representación, participación y expresión.</p>`, arboles:[{pregunta:'¿Dificultad de acceso o aprendizaje?', pasos:['Identificar barrera','Verificar apoyos aprobados','Aplicar y dar seguimiento','Si negativa: documentar, orientar, escalar']}], casos:[{titulo:'Docente niega adecuación', descripcion:'Docente rechaza aplicar adecuación aprobada.', competencia:'Inclusión y no discriminación', respuesta:'Exigir aplicación, orientar, documentar, escalar si persiste.'},{titulo:'Actividad digital inaccesible', descripcion:'Recurso no permite participación.', competencia:'Accesibilidad tecnológica', respuesta:'Rediseñar con alternativas accesibles.'}], fichas:[{frente:'DUA', dorso:'Diseño Universal para el Aprendizaje.'},{frente:'Adecuación = ¿bajar calidad?', dorso:'No. Ajusta el camino al aprendizaje.'}] },
-                { id:12, titulo:'Política Educativa y Curricular', color:'gris', sala:'Sala Gris - Política Educativa', contenido:'<p>Contenido del capítulo 12 (próximamente).</p>', arboles:[], casos:[{titulo:'Docente ignora programa oficial', descripcion:'Alega libertad de cátedra.', competencia:'Autoridad técnica curricular', respuesta:'La libertad de cátedra no permite desobedecer programas oficiales.'}], fichas:[{frente:'Libertad de cátedra', dorso:'No autoriza ignorar programas oficiales.'}] },
-                { id:13, titulo:'Reglamento de Evaluación de los Aprendizajes (REA)', color:'blanco', sala:'Sala Blanca - REA', contenido:`<h2>Evaluación, calificación, impugnaciones</h2>
-<h3>Tipos</h3><p>🔍Diagnóstica 🧭Formativa 📊Sumativa</p>
-<h3>Eximidos</h3><p>Promedio ≥90, sin ausencias injustificadas. Debe seguir asistiendo.</p>
-<h3>Impugnaciones</h3><p>Ruta: Docente → Director → Supervisor → Dir. Regional. Plazo: 3 días hábiles.</p>
-<h3>Rol del Asesor</h3><p>NO resuelve apelaciones de notas. Emite criterio solo si autoridad lo solicita.</p>`, arboles:[{pregunta:'¿Inconformidad con calificación?', pasos:['¿En plazo? (3 días)','¿Instancia correcta?','Docente → Director → Supervisor','Asesor solo con solicitud formal']}], casos:[{titulo:'Apelación directa al Asesor', descripcion:'Padre pide anular examen directamente.', competencia:'Debido proceso evaluativo', respuesta:'Remitir a ruta REA. No resolver directamente.'},{titulo:'Docente niega eximición', descripcion:'Estudiante con 96 de promedio.', competencia:'Aplicación REA', respuesta:'Verificar requisitos; el criterio docente no puede imponerse al REA.'}], fichas:[{frente:'¿Asesor anula prueba?', dorso:'No. Solo criterio técnico si es solicitado.'},{frente:'Eximido = ¿no asiste?', dorso:'Falso. Debe continuar asistiendo.'}] },
-                { id:14, titulo:'Banco Maestro de Casos Integrados', color:'gris', sala:'Sala Gris - Banco Maestro', contenido:`<h2>Método de resolución</h2>
-<ol><li>¿Qué ocurrió?</li><li>¿Qué competencia?</li><li>¿Norma dominante?</li><li>¿Normas complementarias?</li><li>¿Principio?</li><li>¿Actuación correcta?</li><li>¿Qué NO hacer?</li></ol>
-<p><strong>Regla final:</strong> Primero la competencia, luego la norma.</p>`, arboles:[], casos:[{titulo:'Denuncia con menor', competencia:'Protección integral', respuesta:'Medida cautelar, no conciliación, remitir.'},{titulo:'Apelación de prueba', competencia:'REA', respuesta:'Remitir a ruta jerárquica.'},{titulo:'Negativa de adecuación', competencia:'Inclusión', respuesta:'Exigir apoyos, documentar, escalar.'},{titulo:'Compra con marca', competencia:'Contratación', respuesta:'Especificaciones funcionales.'},{titulo:'Docente ignora programa', competencia:'Currículo', respuesta:'Orientar, documentar, escalar.'}], fichas:[{frente:'¿Qué identificar primero?', dorso:'La competencia evaluada, luego la norma dominante.'}] }
+<h3>Sistemas de Información</h3><p>Decisiones con datos verificables, no percepciones.</p>`,
+                  arboles:[{pregunta:'¿Involucra un riesgo institucional?', pasos:['Identificar objetivo','Valorar probabilidad/impacto','Diseñar controles','Monitorear','Mejorar']}],
+                  casos:[{titulo:'Plataforma no utilizada', descripcion:'Se compró, capacitó y nadie la usa.', competencia:'Seguimiento del titular subordinado', respuesta:'El titular que debía hacer seguimiento.'},{titulo:'Riesgo de filtración', descripcion:'Prueba con riesgo de filtración.', competencia:'SEVRI', respuesta:'Diseñar controles preventivos.'}],
+                  fichas:[{frente:'¿Control Interno = Auditoría?', dorso:'Falso. Es gestión preventiva.'},{frente:'SEVRI', dorso:'Sistema Específico de Valoración del Riesgo Institucional.'}] },
+
+                // CAPÍTULO 6 - LGAP (ahora con contenido completo)
+                { id:6, titulo:'Ley General de la Administración Pública (LGAP)', color:'gris', sala:'Sala Gris - LGAP',
+                  contenido:`<h2>Acto administrativo, validez y recursos</h2>
+<p><strong>Regla de Oro:</strong> La Administración solo puede hacer lo que la ley le permite. Toda decisión administrativa debe estar fundada en norma expresa.</p>
+<h3>Acto administrativo</h3><p>Es toda declaración unilateral de voluntad de la Administración que produce efectos jurídicos. Ejemplos: nombramientos, sanciones, autorizaciones, resoluciones.</p>
+<h3>Elementos de validez</h3><p>Competencia del órgano que lo dicta, fin público, motivo legítimo, procedimiento legal, forma adecuada (escrita, motivada).</p>
+<h3>Nulidades</h3><p>Acto nulo: falta un elemento esencial (ej: dictado por autoridad incompetente). Acto anulable: tiene defecto subsanable (ej: error de forma).</p>
+<h3>Recursos administrativos</h3><p>Revocatoria (ante quien dictó el acto), apelación (ante el superior), revisión (contra actos firmes por causales excepcionales). Plazo general: 3 días hábiles para impugnar.</p>
+<h3>Silencio administrativo</h3><p>Si la Administración no resuelve en plazo, se puede entender denegada la petición (silencio negativo) o concedida (silencio positivo, solo si la ley lo establece expresamente).</p>`,
+                  arboles:[{pregunta:'¿Es válido el acto administrativo?', pasos:['¿Lo dictó autoridad competente?','¿Tiene fin público?','¿Siguió el procedimiento legal?','¿Está debidamente motivado?','Si falta un elemento esencial → Nulo']}],
+                  casos:[{titulo:'Resolución sin firma del Director', descripcion:'Un docente recibe una sanción en un documento sin firma ni sello oficial.', competencia:'Validez del acto administrativo', respuesta:'El acto es inválido por defecto de forma. Debe ser emitido con las formalidades legales.'},{titulo:'Apelación fuera de plazo', descripcion:'Un funcionario apela una decisión 5 días hábiles después de notificado.', competencia:'Recursos administrativos', respuesta:'El recurso es extemporáneo. El plazo de 3 días hábiles ya venció. La decisión queda en firme.'}],
+                  fichas:[{frente:'Elementos del acto administrativo', dorso:'Competencia, fin público, motivo, procedimiento, forma.'},{frente:'Plazo para apelar', dorso:'3 días hábiles desde la notificación.'}] },
+
+                // CAPÍTULO 7 - Empleo Público
+                { id:7, titulo:'Empleo Público y Gestión de Personas', color:'gris', sala:'Sala Gris - Empleo Público',
+                  contenido:`<h2>Perfil, desempeño, concursos y carrera administrativa</h2>
+<p><strong>Regla de Oro:</strong> El ingreso al empleo público se basa en el mérito y la idoneidad demostrada mediante concurso.</p>
+<h3>Concurso público</h3><p>Procedimiento objetivo y transparente para seleccionar al personal. Incluye: publicación del perfil, recepción de ofertas, evaluación de méritos (atesta dos, pruebas, entrevista), selección y nombramiento.</p>
+<h3>Perfil del Asesor Nacional</h3><p>Formación universitaria en la especialidad, experiencia docente y técnica, dominio curricular, capacidad de orientación y supervisión. Debe cumplir los requisitos del puesto según el manual de cargos del MEP.</p>
+<h3>Evaluación del desempeño</h3><p>Proceso anual que mide el cumplimiento de metas y competencias. Puede resultar en reconocimiento, capacitación o, en casos extremos, separación del cargo si es reiteradamente deficiente.</p>
+<h3>Carrera administrativa</h3><p>Conjunto de normas que regulan el ingreso, permanencia, promoción y retiro de los servidores públicos. Protege la estabilidad pero exige buen desempeño.</p>`,
+                  arboles:[{pregunta:'¿Cómo se ingresa al empleo público?', pasos:['¿Existe plaza vacante?','¿Se publicó el concurso?','¿Se evaluaron méritos objetivamente?','¿Se nombró al mejor calificado?']}],
+                  casos:[{titulo:'Nombramiento sin concurso', descripcion:'Un Director nombra a un conocido sin realizar concurso público.', competencia:'Mérito e idoneidad', respuesta:'El nombramiento es ilegal. Todo ingreso al servicio público debe hacerse por concurso.'},{titulo:'Evaluación de desempeño deficiente', descripcion:'Un Asesor recibe dos evaluaciones anuales consecutivas con resultado deficiente.', competencia:'Carrera administrativa', respuesta:'El desempeño deficiente reiterado puede dar lugar a la separación del cargo, previo debido proceso.'}],
+                  fichas:[{frente:'Principio de mérito', dorso:'El ingreso y promoción se basan en capacidad demostrada, no en favoritismos.'},{frente:'Evaluación del desempeño', dorso:'Proceso anual que mide cumplimiento de metas. Dos evaluaciones deficientes consecutivas pueden causar separación.'}] },
+
+                // CAPÍTULO 8 - Contratación Pública
+                { id:8, titulo:'Ley de Contratación Pública', color:'gris', sala:'Sala Gris - Contratación',
+                  contenido:`<h2>Principios, procedimientos y control de la contratación</h2>
+<p><strong>Regla de Oro:</strong> Toda contratación pública debe ser eficiente, transparente y objetiva. No se puede favorecer a un proveedor específico.</p>
+<h3>Principios</h3><p>Publicidad, igualdad de oferentes, libre competencia, objetividad, eficiencia, control.</p>
+<h3>Tipos de contratación</h3><p>Licitación pública (obras o bienes de alto valor), contratación directa (urgencia, único proveedor), licitación abreviada (montos intermedios).</p>
+<h3>Cartel de licitación</h3><p>Documento con especificaciones técnicas, requisitos, criterios de evaluación. No puede dirigirse a una marca o proveedor. Debe usar especificaciones funcionales objetivas.</p>
+<h3>Rol del Asesor Nacional</h3><p>Puede revisar las especificaciones técnicas desde su área de conocimiento. Debe alertar si el cartel contiene restricciones injustificadas o direccionamiento.</p>`,
+                  arboles:[{pregunta:'¿La especificación es objetiva?', pasos:['¿Menciona una marca específica? → Debe convertirse en especificación funcional','¿Permite la participación de múltiples oferentes?','¿Los criterios de evaluación son claros y medibles?']}],
+                  casos:[{titulo:'Compra con marca específica', descripcion:'Solicitan comprar un software mencionando una marca determinada.', competencia:'Contratación pública', respuesta:'Transformar la marca en especificaciones funcionales objetivas, abiertas y verificables.'},{titulo:'Fraccionamiento de compra', descripcion:'Un Director divide una compra grande en varias pequeñas para evitar la licitación.', competencia:'Principio de eficiencia y legalidad', respuesta:'El fraccionamiento es ilegal. Debe aplicarse el procedimiento que corresponda según el monto total.'}],
+                  fichas:[{frente:'¿Marca en cartel?', dorso:'No. Usar especificaciones funcionales abiertas.'},{frente:'Principios de contratación', dorso:'Publicidad, igualdad, libre competencia, objetividad, eficiencia.'}] },
+
+                // CAPÍTULO 9 - Ley 9999
+                { id:9, titulo:'Ley 9999: Protección de la Niñez y Adolescencia', color:'rojo', sala:'Sala Roja - Ley 9999',
+                  contenido:`<h2>Protección inmediata, denuncia obligatoria y no revictimización</h2>
+<p><strong>Regla de Oro:</strong> Ante una denuncia que involucra a una persona menor de edad, la protección es inmediata, la conciliación está prohibida y la denuncia es obligatoria.</p>
+<h3>Medidas cautelares inmediatas</h3><p>Separación del funcionario denunciado del contacto con la presunta víctima mientras se investiga. No es una sanción, es una medida de protección.</p>
+<h3>Prohibición de conciliación</h3><p>En casos de violencia, abuso o acoso contra menores, está prohibido cualquier intento de conciliación entre las partes. La denuncia debe seguir su curso legal.</p>
+<h3>Denuncia obligatoria</h3><p>Todo funcionario público que conozca de un hecho que afecte a una persona menor de edad tiene la obligación legal de denunciarlo ante las autoridades competentes.</p>
+<h3>Rol del Asesor Nacional</h3><p>Si recibe una denuncia o tiene conocimiento de un hecho, debe informar de inmediato a la Dirección y al Departamento de Régimen Disciplinario. No investiga, pero debe documentar y asegurar la protección.</p>`,
+                  arboles:[{pregunta:'¿Denuncia con menor de edad?', pasos:['Separación inmediata del funcionario','No conciliación','Medida cautelar','Remitir a Régimen Disciplinario y autoridades judiciales']}],
+                  casos:[{titulo:'Docente denunciado por mensajes a menor', descripcion:'Denuncia por mensajes inapropiados a una estudiante menor de edad.', competencia:'Protección integral', respuesta:'Aplicar medida cautelar inmediata, impedir cualquier conciliación, documentar y remitir a Régimen Disciplinario y al PANI.'},{titulo:'Director intenta mediar entre docente y estudiante', descripcion:'Un Director organiza una reunión entre un docente denunciado y la estudiante para "resolver el malentendido".', competencia:'Prohibición de conciliación', respuesta:'La conciliación está prohibida por ley. La reunión es ilegal y puede configurar revictimización.'}],
+                  fichas:[{frente:'¿Conciliación con menor?', dorso:'Prohibida. Separación inmediata.'},{frente:'Denuncia obligatoria', dorso:'Todo funcionario público debe denunciar hechos que afecten a menores.'}] },
+
+                // CAPÍTULO 10 - Código de Niñez
+                { id:10, titulo:'Código de la Niñez y Adolescencia', color:'rojo', sala:'Sala Roja - Niñez',
+                  contenido:`<h2>Interés superior, derecho educativo y protección integral</h2>
+<p><strong>Regla de Oro:</strong> Toda decisión que involucre a una persona menor de edad debe priorizar su interés superior, es decir, su bienestar, desarrollo integral y protección.</p>
+<h3>Interés superior del menor</h3><p>Principio rector que obliga a todas las instituciones (incluido el MEP) a tomar decisiones que favorezcan el desarrollo integral, la seguridad y la dignidad de los niños, niñas y adolescentes.</p>
+<h3>Derecho a la educación</h3><p>El Código garantiza el acceso, permanencia y calidad educativa. El MEP debe asegurar que ningún estudiante sea excluido por razones económicas, sociales, de discapacidad o de cualquier otra índole.</p>
+<h3>Protección integral</h3><p>Incluye protección contra el maltrato físico y psicológico, la explotación, el abuso, la discriminación. Los centros educativos son espacios seguros y protectores.</p>
+<h3>Rol del Asesor Nacional</h3><p>Debe incorporar el enfoque de derechos en sus orientaciones, asegurar que las directrices respeten el interés superior y alertar sobre prácticas que vulneren los derechos del estudiantado.</p>`,
+                  arboles:[{pregunta:'¿La decisión respeta el interés superior?', pasos:['¿Beneficia el desarrollo integral del menor?','¿Garantiza su seguridad y dignidad?','¿Evita la discriminación o exclusión?','¿Considera su opinión según su edad y madurez?']}],
+                  casos:[{titulo:'Exclusión de estudiante por discapacidad', descripcion:'Un centro educativo sugiere que un estudiante con discapacidad "busque otra institución más adecuada".', competencia:'Derecho a la educación e interés superior', respuesta:'Constituye discriminación y viola el derecho a la educación inclusiva. El centro debe realizar los ajustes necesarios.'},{titulo:'Aplicación de sanción sin considerar contexto', descripcion:'Un Director sanciona a un estudiante por conducta sin investigar si hay factores de riesgo en su entorno.', competencia:'Protección integral', respuesta:'Toda sanción debe considerar el contexto y garantizar el interés superior, buscando medidas formativas antes que punitivas.'}],
+                  fichas:[{frente:'Interés superior', dorso:'Priorizar el bienestar, desarrollo integral y protección del menor en toda decisión.'},{frente:'Derecho a la educación', dorso:'Acceso, permanencia y calidad educativa sin discriminación.'}] },
+
+                // CAPÍTULO 11 (completo como antes)
+                { id:11, titulo:'Ley 7600 y Ley 8661: Inclusión, DUA y Accesibilidad', color:'turquesa', sala:'Sala Turquesa - Inclusión',
+                  contenido:`<h2>Igualdad de oportunidades, accesibilidad, inclusión y DUA</h2>
+<p><strong>Regla de Oro:</strong> Si existe una barrera, la institución debe removerla o reducirla. No corresponde trasladar toda la carga a la persona estudiante.</p>
+<h3>Tipos de barreras</h3><p>Física, curricular, metodológica, comunicacional, actitudinal, evaluativa, tecnológica, administrativa.</p>
+<h3>Discriminación directa vs. por omisión</h3><p><strong>Directa:</strong> excluir expresamente. <strong>Por omisión:</strong> no proporcionar los apoyos necesarios.</p>
+<h3>DUA (Diseño Universal para el Aprendizaje)</h3><p>Planificar desde el inicio considerando la diversidad. Múltiples formas de representación, participación y expresión.</p>
+<h3>Rol del Asesor Nacional</h3><p>Debe incorporar DUA en orientaciones, recomendar alternativas accesibles, verificar apoyos aprobados, documentar barreras y dar seguimiento.</p>`,
+                  arboles:[{pregunta:'¿Existe dificultad de acceso, participación o aprendizaje?', pasos:['Identificar barrera','Verificar apoyos aprobados','Aplicar y dar seguimiento','Si negativa: documentar, orientar, escalar']}],
+                  casos:[{titulo:'Docente niega adecuación curricular', descripcion:'Docente se niega a aplicar una adecuación curricular significativa argumentando que el estudiante "no da la talla".', competencia:'Inclusión y no discriminación', respuesta:'Exigir la aplicación de los apoyos aprobados, orientar técnicamente, documentar la negativa y dar seguimiento. Si persiste, remitir a la instancia competente.'},{titulo:'Actividad digital inaccesible', descripcion:'Un centro educativo dice que no puede implementar una actividad digital porque un estudiante no puede acceder al recurso.', competencia:'Accesibilidad tecnológica', respuesta:'Solicitar rediseño accesible de la actividad, con alternativas de participación y evidencia de aprendizaje.'}],
+                  fichas:[{frente:'¿Qué es DUA?', dorso:'Diseño Universal para el Aprendizaje: planificar desde el inicio con múltiples formas de representación, participación y expresión.'},{frente:'Adecuación = ¿bajar calidad?', dorso:'No. La adecuación ajusta el camino para acceder al aprendizaje, no elimina el aprendizaje esperado.'}] },
+
+                // CAPÍTULO 12 - Política Educativa
+                { id:12, titulo:'Política Educativa y Curricular', color:'gris', sala:'Sala Gris - Política Educativa',
+                  contenido:`<h2>Enfoque de competencias, mediación pedagógica y rol técnico</h2>
+<p><strong>Regla de Oro:</strong> La libertad de cátedra no autoriza a desobedecer los programas oficiales. El currículo nacional es de acatamiento obligatorio.</p>
+<h3>Política Educativa vigente</h3><p>Establece los fines, principios y objetivos del sistema educativo costarricense: educación centrada en la persona, formación integral, equidad, calidad, inclusión.</p>
+<h3>Política Curricular</h3><p>Define el enfoque de competencias: saber conocer, saber hacer, saber ser, saber convivir. La mediación pedagógica debe promover el aprendizaje activo y significativo.</p>
+<h3>Rol del Asesor Nacional</h3><p>Es el garante técnico de la correcta aplicación del currículo. Orienta la mediación pedagógica, revisa la alineación curricular, emite criterio sobre la pertinencia de los recursos didácticos.</p>
+<h3>Libertad de cátedra</h3><p>Tiene límites. No ampara el incumplimiento del programa oficial. El docente puede usar metodologías diversas, pero debe alcanzar los resultados de aprendizaje establecidos.</p>`,
+                  arboles:[{pregunta:'¿La práctica docente se ajusta al currículo?', pasos:['¿Cumple con los resultados de aprendizaje del programa?','¿Utiliza los enfoques metodológicos oficiales?','¿Respeta la política educativa vigente?','Si no cumple → Orientar, documentar, escalar si persiste']}],
+                  casos:[{titulo:'Docente se niega a aplicar programa oficial', descripcion:'Un docente de especialidad técnica se niega a aplicar el programa oficial alegando libertad de cátedra.', competencia:'Autoridad técnica curricular', respuesta:'Aclarar que la libertad de cátedra no permite desobedecer programas oficiales; orientar, documentar y activar apercibimiento por la vía competente si persiste.'},{titulo:'Centro educativo usa planificación desactualizada', descripcion:'Un Asesor detecta que un centro sigue usando planeamientos del programa anterior.', competencia:'Supervisión curricular', respuesta:'Emitir informe técnico, recomendar la actualización inmediata, dar seguimiento y comunicar a la Dirección Regional.'}],
+                  fichas:[{frente:'Libertad de cátedra', dorso:'No autoriza a ignorar los programas oficiales.'},{frente:'Enfoque de competencias', dorso:'Saber conocer, saber hacer, saber ser y saber convivir.'}] },
+
+                // CAPÍTULO 13 (completo como antes)
+                { id:13, titulo:'Reglamento de Evaluación de los Aprendizajes (REA)', color:'blanco', sala:'Sala Blanca - REA',
+                  contenido:`<h2>Evaluación, calificación, asistencia, eximidos e impugnaciones</h2>
+<h3>Tipos de evaluación</h3><p>🔍 <strong>Diagnóstica:</strong> conocer punto de partida. 🧭 <strong>Formativa:</strong> retroalimentar durante el proceso. 📊 <strong>Sumativa:</strong> calificar logro alcanzado.</p>
+<h3>Alineación evaluativa</h3><p>Toda prueba debe responder al resultado de aprendizaje, con contenidos mediados y criterios comunicados. No se califica lo que no se enseñó.</p>
+<h3>Eximidos</h3><p>Procede con promedio ≥ 90 y sin llegadas tardías ni ausencias injustificadas. Estar eximido no significa dejar de asistir a clases.</p>
+<h3>Impugnaciones</h3><p>Ruta jerárquica estricta: Docente → Director → Supervisor → Dirección Regional. Plazo: 3 días hábiles tras entrega de la nota.</p>
+<h3>Rol del Asesor Nacional</h3><p>NO resuelve apelaciones de notas de aula. Puede emitir criterio técnico sobre coherencia curricular solo si la autoridad competente lo solicita formalmente.</p>`,
+                  arboles:[{pregunta:'¿Inconformidad con una calificación?', pasos:['¿Se presentó en plazo? (3 días hábiles)','¿Se presentó ante la instancia correcta?','Docente → Director → Supervisor → Dirección Regional','El Asesor solo emite criterio si es solicitado formalmente']},{pregunta:'¿Procede la eximición?', pasos:['¿Promedio ≥ 90?','¿Sin llegadas tardías/ausencias injustificadas?','¿La asignatura admite eximirse?','Si todo es sí → Procede. Debe continuar asistiendo.']}],
+                  casos:[{titulo:'Apelación directa al Asesor Nacional', descripcion:'Un padre de familia envía correo directo al Asesor Nacional exigiendo anular un examen porque "estaba muy difícil".', competencia:'Debido proceso evaluativo', respuesta:'No resolver directamente. Remitir a la ruta jerárquica del REA. El Asesor solo emite criterio técnico si la autoridad competente lo solicita formalmente.'},{titulo:'Docente niega eximición a estudiante con 96', descripcion:'Un docente de especialidad técnica niega la eximición a un estudiante con promedio de 96, alegando que "en talleres técnicos nadie se exime".', competencia:'Aplicación reglamentaria del REA', respuesta:'El criterio personal del docente no puede imponerse sobre el REA. Indicar al Director que revise los requisitos y aplique el beneficio si corresponde.'}],
+                  fichas:[{frente:'¿Puede el Asesor anular una prueba de aula?', dorso:'No. El Asesor no resuelve apelaciones de notas. Solo emite criterio técnico si es solicitado formalmente.'},{frente:'¿Estar eximido significa no asistir?', dorso:'No. El estudiante eximido debe continuar asistiendo a las lecciones.'}] },
+
+                // CAPÍTULO 14 (completo como antes)
+                { id:14, titulo:'Banco Maestro de Casos Integrados', color:'gris', sala:'Sala Gris - Banco Maestro',
+                  contenido:`<h2>Método de resolución</h2>
+<ol><li>¿Qué ocurrió?</li><li>¿Qué competencia evalúa?</li><li>¿Qué norma domina?</li><li>¿Qué normas complementan?</li><li>¿Qué principio prevalece?</li><li>¿Qué debe hacer el Asesor?</li><li>¿Qué NO debe hacer?</li></ol>
+<p><strong>Regla final:</strong> Nunca respondas primero con la ley. Primero identifica la competencia evaluada. Luego selecciona la norma dominante.</p>
+<h3>Matriz rápida de decisión</h3>
+<table><tr style="background:#7F8C8D;color:white;"><th>Tema</th><th>Competencia</th><th>Norma dominante</th></tr>
+<tr><td>Falta docente</td><td>Régimen disciplinario</td><td>Servicio Civil</td></tr>
+<tr style="background:#eee;"><td>Riesgo institucional</td><td>Control preventivo</td><td>Ley 8292</td></tr>
+<tr><td>Resolución o nulidad</td><td>Legalidad administrativa</td><td>LGAP</td></tr>
+<tr style="background:#eee;"><td>Perfil o concurso</td><td>Gestión de personas</td><td>Empleo Público</td></tr>
+<tr><td>Compra o cartel</td><td>Recursos públicos</td><td>Contratación</td></tr>
+<tr style="background:#eee;"><td>Denuncia con menor</td><td>Protección inmediata</td><td>Ley 9999</td></tr>
+<tr><td>Seguridad del menor</td><td>Interés superior</td><td>Código de Niñez</td></tr>
+<tr style="background:#eee;"><td>Barreras o adecuaciones</td><td>Inclusión</td><td>Ley 7600/8661</td></tr>
+<tr><td>Mediación y currículo</td><td>Gestión pedagógica</td><td>Política Educativa</td></tr>
+<tr style="background:#eee;"><td>Notas o apelaciones</td><td>Evaluación</td><td>REA</td></tr></table>`,
+                  arboles:[],
+                  casos:[{titulo:'Docente denunciado por mensajes a estudiante menor', competencia:'Protección integral', respuesta:'Medida cautelar inmediata, impedir conciliación, documentar y remitir a Régimen Disciplinario y autoridades competentes.'},{titulo:'Padre pide al Asesor anular una prueba', competencia:'REA y debido proceso', respuesta:'No resolver directamente; remitir a la ruta jerárquica del REA. El Asesor solo emite criterio si es solicitado formalmente.'},{titulo:'Docente se niega a aplicar adecuación curricular', competencia:'Inclusión y no discriminación', respuesta:'Exigir aplicación de apoyos, orientar técnicamente, documentar y dar seguimiento.'},{titulo:'Compra de software con marca específica', competencia:'Contratación pública', respuesta:'Transformar la marca en especificaciones funcionales objetivas, abiertas y verificables.'},{titulo:'Docente no aplica programa oficial por "libertad de cátedra"', competencia:'Autoridad técnica curricular', respuesta:'Aclarar que la libertad de cátedra no permite desobedecer programas oficiales; orientar, documentar y escalar si persiste.'}],
+                  fichas:[{frente:'¿Qué se identifica primero en un caso?', dorso:'La competencia evaluada, luego la norma dominante. Nunca al revés.'}] }
             ];
 
+            // ============ PREGUNTAS DEL SIMULADOR ============
             const preguntasData = [
                 { competencia:'Control Interno', norma:'Ley 8292', enunciado:'Usted detecta que un programa nacional no se ejecuta en 7 Direcciones Regionales. ¿Qué actuación corresponde?', opciones:['Esperar auditoría','Documentar y activar seguimiento','Informar al Ministro','Solicitar sanción inmediata'], correcta:1 },
                 { competencia:'Protección integral', norma:'Ley 9999', enunciado:'Docente denunciado por mensajes a estudiante menor. ¿Qué hacer?', opciones:['Reunir al docente con la estudiante','Esperar pruebas definitivas','Medida cautelar inmediata y remitir','Sugerir conciliación'], correcta:2 },
@@ -408,10 +552,12 @@
                 { competencia:'Rol del Asesor', norma:'Servicio Civil', enunciado:'Observa que un docente usa materiales contrarios al programa oficial.', opciones:['Ordenar suspensión','Ignorar','Elaborar criterio técnico y comunicar','Modificar materiales personalmente'], correcta:2 },
                 { competencia:'Contratación', norma:'Ley Contratación', enunciado:'Solicitan comprar software mencionando una marca.', opciones:['Aprobar la marca','Especificaciones funcionales objetivas','Tres cotizaciones de la misma marca','Rechazar cualquier compra'], correcta:1 },
                 { competencia:'Régimen disciplinario', norma:'Servicio Civil', enunciado:'Director pide despedir docente solo con el informe del Asesor.', opciones:['Apoyar despido','Aclarar que el informe no sustituye el procedimiento','Ignorar','Solicitar despido sin trámite'], correcta:1 },
-                { competencia:'Evaluación inclusiva', norma:'REA y Ley 7600', enunciado:'Prueba en formato escrito extenso ignorando apoyos aprobados.', opciones:['Aplicar igual para todos','Verificar apoyos y ajustar instrumento','Eximir al estudiante','Bajar dificultad para todos'], correcta:1 }
+                { competencia:'Evaluación inclusiva', norma:'REA y Ley 7600', enunciado:'Prueba en formato escrito extenso ignorando apoyos aprobados.', opciones:['Aplicar igual para todos','Verificar apoyos y ajustar instrumento','Eximir al estudiante','Bajar dificultad para todos'], correcta:1 },
+                { competencia:'Debido proceso', norma:'LGAP', enunciado:'Un Director impone una sanción verbal sin abrir expediente. ¿Es válida?', opciones:['Sí, si la falta es leve','No, viola el debido proceso','Sí, si el docente acepta','Es válida si hay testigos'], correcta:1 },
+                { competencia:'Interés superior', norma:'Código de Niñez', enunciado:'Un centro educativo sugiere que un estudiante con discapacidad busque otra institución. ¿Qué principio se viola?', opciones:['Libertad de enseñanza','Interés superior del menor','Autonomía institucional','Libertad de cátedra'], correcta:1 }
             ];
 
-            // RENDER
+            // ============ FUNCIONES DE RENDERIZADO ============
             function renderInicio() {
                 app.innerHTML = `
             <header class="hero"><h1>Idoneidad MEP Lab</h1><p>Simulador Visual para Asesores Nacionales del MEP</p>
